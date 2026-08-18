@@ -1,6 +1,7 @@
 package com.itmk.web.sys_user.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -18,6 +19,9 @@ public class SysUser{
     private String email;
     private String sex;
     private String isAdmin;
+    // 不属于用户表，需要排除，否则会报错
+    @TableField(exist = false)
+    private String roleId;
     //帐户是否过期(1 未过期，0已过期)
     private boolean isAccountNonExpired = true;
     //帐户是否被锁定(1 未锁定，0已锁定)
