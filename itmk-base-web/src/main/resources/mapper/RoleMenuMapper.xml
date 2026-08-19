@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace = mapper对应接口的全限定符 -->
+<mapper namespace="com.itmk.web.sys_role_menu.mapper.RoleMenuMapper">
+    <insert id="saveRoleMenu">
+        insert into sys_role_menu (role_id, menu_id) values
+        <foreach collection="menuIds" item="item" separator="," index="index">
+            (#{roleId}, #{item})
+        </foreach>
+    </insert>
+</mapper>

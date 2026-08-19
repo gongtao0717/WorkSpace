@@ -9,6 +9,8 @@ import com.itmk.util.ResultVo;
 import com.itmk.web.sys_role.entity.RoleParm;
 import com.itmk.web.sys_role.entity.SysRole;
 import com.itmk.web.sys_role.service.SysRoleService;
+import com.itmk.web.sys_role_menu.entity.SaveMenuParm;
+import com.itmk.web.sys_role_menu.service.RoleMenuService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +22,8 @@ import java.util.Date;
 public class SysRoleController {
     @Resource
     private SysRoleService sysRoleService;
+    @Resource
+    private RoleMenuService roleMenuService;
 
     // 添加角色
     @PostMapping
@@ -63,5 +67,12 @@ public class SysRoleController {
         IPage<SysRole> list = sysRoleService.page(page, wrapper);
 
         return ResultUtils.success("查询成功",list);
+    }
+
+    //保存角色菜单
+    @PostMapping("/saveRoleMenu")
+    public ResultVo saveRoleMenu(@RequestBody SaveMenuParm parm){
+        roleMenuService.saveRoleMenu(parm);
+        return ResultUtils.success("分配成功");
     }
 }

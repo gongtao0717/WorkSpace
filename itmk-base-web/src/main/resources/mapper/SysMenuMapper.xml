@@ -4,5 +4,18 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace = mapper对应接口的全限定符 -->
 <mapper namespace="com.itmk.web.sys_menu.mapper.SysMenuMapper">
+    <select id="getMenuByUserId" resultType="com.itmk.web.sys_menu.entity.SysMenu">
+        select DISTINCT m.* from sys_user_role ur
+        left join sys_role r on ur.role_id = r.role_id
+        left join sys_role_menu rm on r.role_id = rm.role_id
+        left join sys_menu m on rm.menu_id = m.menu_id
+        where r.role_id = 1
+        order by m.order_num
+    </select>
 
+    <select id="getMenuByRoleId" resultType="com.itmk.web.sys_menu.entity.SysMenu">
+        select m.* from sys_role_menu rm,sys_menu m
+        where rm.menu_id = m.menu_id
+        and rm.role_id = #{roleId}
+    </select>
 </mapper>

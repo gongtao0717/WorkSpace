@@ -9,6 +9,11 @@ spring:
     username: root
     password: 123456
 
+jwt:
+  issuer: itmk
+  secret: com.itmk
+  expiration: 30
+
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
